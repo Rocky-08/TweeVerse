@@ -5,6 +5,7 @@ import Feed from "./Feed";
 import Widgets from "./Widgets";
 import { useMediaQuery, useTheme } from "@mui/material";
 import Profile from "./Profile";
+import Footer from "./Footer";
 
 const MainPage = ({}) => {
   const theme = useTheme();

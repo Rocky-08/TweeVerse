@@ -32,8 +32,8 @@ const Widgets = () => {
 
           <Follow
             avatar="https://pbs.twimg.com/profile_images/1562753500726976514/EPSUNyR3_400x400.jpg"
-            displayName="Virat Kholi"
-            userName="imVkholi"
+            displayName="Virat Kohli"
+            userName="imVkohli"
           />
           <Follow
             avatar="https://pbs.twimg.com/profile_images/994592419705274369/RLplF55e_400x400.jpg"

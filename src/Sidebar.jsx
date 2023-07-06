@@ -9,7 +9,7 @@ import MessageIcon from "@mui/icons-material/Message";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import PersonIcon from "@mui/icons-material/Person";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Button } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Sidebar = ({}) => {
@@ -23,15 +23,11 @@ const Sidebar = ({}) => {
         <SidebarOption Icon={SearchIcon} text="Explore" />
         <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
         <SidebarOption Icon={MessageIcon} text="Message" />
-        <Link to="/login" style={{ textDecoration: "none" }}>
+        <Link to="/profile" style={{ textDecoration: "none" }}>
           <SidebarOption Icon={PersonIcon} text="Profile" />
         </Link>
         <SidebarOption Icon={VerifiedIcon} text="Verified" />
         <SidebarOption Icon={MoreHorizIcon} text="More" />
-
-        <Button variant="outlined" className="sidebar__tweet" fullWidth>
-          Tweet
-        </Button>
       </div>
     </>
   );

@@ -3,9 +3,11 @@
     border-right: 1px solid var(--twitter-background);
     flex: 0.1;
     margin-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    
+    padding-right: 5px;
     height: 96%;
+    max-width: fit-content;
+    
   
 }
 .sidebar__tweet{
@@ -21,6 +23,7 @@
 .sidebar__twitterIcon{
     color:var(--twitter-color);
     font-size: 30px !important;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-bottom: 20px;
+ 
 }

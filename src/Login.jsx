@@ -13,23 +13,18 @@ const darkTheme = createTheme({
 const Login = () => {
   return (
     <>
-      <Container>
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline />
-          <Container
-            align="center"
-            style={{
-              marginTop: "3rem",
-              border: "1px solid white",
-              padding: "3rem",
-              borderRadius: "2rem",
-            }}
-            maxWidth="sm"
-          >
-            <LoginForm />
-          </Container>
-        </ThemeProvider>
-      </Container>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Container
+          align="center"
+          style={{
+            marginTop: "3rem",
+          }}
+          maxWidth="sm"
+        >
+          <LoginForm />
+        </Container>
+      </ThemeProvider>
     </>
   );
 };

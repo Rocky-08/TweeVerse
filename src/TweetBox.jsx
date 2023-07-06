@@ -1,24 +1,49 @@
 import { Avatar, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TweetBox.css";
 import db from "./firebase";
+import Cookies from "js-cookie";
 
 const TweetBox = () => {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
+  const [userdata, setUserdata] = useState([]);
+  const userEmail = Cookies.get("userEmail");
+  const userId = Cookies.get("userId");
+  const [url, setUrl] = useState("");
+  useEffect(() => {
+    db.collection("users").onSnapshot((snapshot) =>
+      setUserdata(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+    );
+
+    db.collection("users")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.map((doc) => {
+          if (doc.id == userId) {
+            setUrl(doc.data().image);
+          }
+        });
+      });
+  }, []);
 
   const sendTweet = (e) => {
     e.preventDefault();
 
     if (tweetMessage != "") {
-      db.collection("posts").add({
-        displayName: "Kartik Goyal",
-        userName: "karry",
-        verified: true,
-        text: tweetMessage,
-        image: tweetImage,
-        avatar:
-          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+      userdata.map((data) => {
+        if (data.email == userEmail) {
+          db.collection("posts").add({
+            displayName: data.name,
+            userName: data.username,
+            verified: true,
+            text: tweetMessage,
+            image: tweetImage,
+            email: userEmail,
+            avatar: url,
+            like: [],
+          });
+        }
       });
     }
 
@@ -29,7 +54,7 @@ const TweetBox = () => {
     <div className="tweetBox">
       <form>
         <div className="tweetBox__input">
-          <Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60" />
+          <Avatar src={url} />
           <input
             value={tweetMessage}
             onChange={(e) => setTweetMessage(e.target.value)}

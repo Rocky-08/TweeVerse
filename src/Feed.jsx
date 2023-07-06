@@ -4,7 +4,8 @@ import TweetBox from "./TweetBox";
 import Post from "./Post";
 import db from "./firebase";
 import FlipMove from "react-flip-move";
-
+import MenuIcon from "@mui/icons-material/Menu";
+import { useMediaQuery, useTheme } from "@mui/material";
 const Feed = () => {
   const [posts, setPosts] = useState([]);
 
@@ -13,16 +14,20 @@ const Feed = () => {
       setPosts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
     );
   }, []);
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <div className="feed">
       <div className="feed__header">
-        <h2>TweeVerse</h2>
+        <span style={{ fontSize: "1.4rem", fontWeight: "bold" }}>
+          TweeVerse
+        </span>
       </div>
       <TweetBox />
       <FlipMove>
         {posts.map((post) => (
           <Post
-            key={post.id}
+            id={post.id}
             displayName={post.displayName}
             userName={post.userName}
             verified={post.verified}

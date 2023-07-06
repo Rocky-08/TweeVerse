@@ -32,7 +32,7 @@ function Auth() {
       <Button
         onClick={login}
         style={{
-          padding: "1rem",
+          padding: "0.7rem",
           background: "white",
           color: "black",
           borderRadius: "2rem",
